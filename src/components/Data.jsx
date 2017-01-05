@@ -3,7 +3,6 @@ import reactMixin                      from 'react-mixin';
 import { ListenerMixin }               from 'reflux';
 import Mozaik                          from 'mozaik/browser';
 
-//export default React.createClass(
 
 class Data extends Component {
     constructor(props) {
@@ -65,6 +64,16 @@ class Data extends Component {
         });
     }
 
+    getIcon(value) {
+        if (value > 70) {
+            return 'fa fa-smile-o'
+        } else if (value > 40) {
+            return 'fa fa-meh-o'
+        } else {
+            return 'fa fa-frown-o'
+        }
+    }
+
     render() {
         var title = "unknown", value = "unknown", unit = null;
         if (this.state.title){
@@ -77,17 +86,24 @@ class Data extends Component {
             unit = this.state.unit;
         }
 
+        var icon = this.getIcon(value);
+
         return (
             <div>
                 <div className="widget__header">
                     <span className="widget__header__subject">
                         {title}
                     </span>
-                    <i className="fa fa-table" />
+                    <i className="fa fa-users" />
                 </div>
                 <div className="json__value">
                     <span>
                         {value} {unit}
+                    </span>
+                </div>
+                <div className="icon">
+                    <span>
+                        <i className={icon} />
                     </span>
                 </div>
             </div>
