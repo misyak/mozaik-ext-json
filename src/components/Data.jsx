@@ -75,9 +75,13 @@ class Data extends Component {
     }
 
     render() {
+        let unit = null;
         const title = this.state.title || 'unknown';
         const value = this.state.value || 'unknown';
-        const unit = (value !== 'unknown') && (value !== 'no data') && this.state.unit;
+
+        if((value !== 'unknown') && (value !== 'no data')){
+            unit = this.state.unit || null;
+        }
 
         const icon = this.getIcon(value);
 
