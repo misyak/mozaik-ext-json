@@ -79,7 +79,8 @@ class Data extends Component {
         const title = this.state.title || 'unknown';
         const value = this.state.value || 'unknown';
 
-        if((value !== 'unknown') && (value !== 'no data')){
+        // handle no data
+        if((!value[0].includes('no data'))){
             unit = this.state.unit || null;
         }
 
