@@ -9,8 +9,8 @@ const client = function (mozaik) {
 
     mozaik.loadApiConfig(config);
 
-    function buildApiRequest() {
-        let url     = config.get('json.url');
+    function buildApiRequest(url) {
+        let url     = (url) ? url : config.get('json.url');
         let headers = config.get('json.headers');
         let req     = request.get(url);
 
@@ -24,7 +24,7 @@ const client = function (mozaik) {
 
     const apiCalls = {
         data(params) {
-            return buildApiRequest()
+            return buildApiRequest(params.url)
                 .then(res => JSON.parse(res.text))
             ;
         }

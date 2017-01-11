@@ -35,14 +35,14 @@ Let's say you want to display two set of data from a file you host on your Dropb
       title: 'WIDGET TITLE',
       value: '${obj1.value}',
       unit:  '${obj1.unit}',
-          columns: 1, rows: 1,
+      columns: 1, rows: 1,
       x: 2, y: 1
   },
 ```
 
 #### api
 
-In your Mozaik dashboard's config.js file, add the JSON file url in the <code>api</code> section. The <code>url</code> key shall contains the full URL where your JSON file is hosted:
+In your Mozaik dashboard's config.js file, add the JSON file url in the <code>api</code> section or as parameter of your widget. The <code>url</code> key shall contains the full URL where your JSON file is hosted:
 
 ```javascript
     // clients configs
@@ -61,7 +61,7 @@ In your Mozaik dashboard's config.js file, add the webservice url in the <code>a
     // clients configs
     api: {
         json: {
-            url: 'http://mywebservice/rest/api/2/resource/id',
+            url: 'http://mywebservice/rest/api/2/resource/id', // optional
             headers: [{name: 'Authorization', value: 'Basic aKjs6LK8ijkSfT'}, {name: 'Content-type', value: 'applicatin/json'}]
         }
     }
@@ -77,6 +77,7 @@ key       | required | description
 `title`   | yes      | *The title to be displayed in the header.*
 `value`   | yes      | *The value to be displayed in the widget body.*
 `unit`    | yes      | *Unit to be displayed after the data. Set to null if not needed.*
+`url`     | no       | *Url to JSON or API that provides JSON response (enables to use url per widget).*
 
 ### usage
 
@@ -86,16 +87,9 @@ key       | required | description
       title: 'THIS IS A TITLE',
       value: '${obj1.value}',
       unit:  '${obj1.unit}',
+      url: 'path_to_API',
       columns: 1, rows: 1,
       x: 1, y: 1
-  },
-  {
-      type:  'json.data',
-      title: '${obj2.name}',
-      value: '${obj2.value}',
-      unit:  null,
-      columns: 1, rows: 1,
-      x: 2, y: 1
   }
 ```
 

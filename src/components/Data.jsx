@@ -8,7 +8,7 @@ class Data extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { title: null, value: null, unit: null, alter: null };
+        this.state = {title: null, value: null, unit: null, alter: null};
     }
 
     getInitialState() {
@@ -22,17 +22,18 @@ class Data extends Component {
 
     getApiRequest() {
         return {
-          id: 'json.data',
-          params: {
-            title: this.props.title,
-            value: this.props.value,
-            unit: this.props.unit,
-            alter: this.props.alter
-          }
+            id: 'json.data',
+            params: {
+                title: this.props.title,
+                value: this.props.value,
+                unit: this.props.unit,
+                alter: this.props.alter,
+                url: this.props.url
+            }
         };
     }
 
-    findProp(obj, prop, defval){
+    findProp(obj, prop, defval) {
         if (typeof defval === 'undefined') defval = null;
         if (typeof prop !== 'undefined' && prop && prop.match(/\$\{.*\}/)) {
             // ${key.prop.value} -> key.prop.value
@@ -40,7 +41,7 @@ class Data extends Component {
             // key.prop.value -> [key, prop, value]
             prop = prop.split('.');
             for (var i = 0; i < prop.length; i++) {
-                if(typeof obj[prop[i]] == 'undefined')
+                if (typeof obj[prop[i]] == 'undefined')
                     return defval;
                 obj = obj[prop[i]];
             }
@@ -54,8 +55,8 @@ class Data extends Component {
     onApiData(data) {
         // Filter if defined
         if (this.props.alter) {
-          var alter = eval("(" + this.props.alter + ")");
-          data = alter(data);
+            var alter = eval("(" + this.props.alter + ")");
+            data = alter(data);
         }
         this.setState({
             title: this.findProp(data, this.props.title),
@@ -80,7 +81,7 @@ class Data extends Component {
         const value = this.state.value || 'unknown';
 
         // handle no data
-        if((!value[0].includes('no data'))){
+        if ((!value[0].includes('no data'))) {
             unit = this.state.unit || null;
         }
 
@@ -92,7 +93,7 @@ class Data extends Component {
                     <span className="widget__header__subject">
                         {title}
                     </span>
-                    <i className="fa fa-users" />
+                    <i className="fa fa-users"/>
                 </div>
                 <div className="json__value">
                     <span>
@@ -101,7 +102,7 @@ class Data extends Component {
                 </div>
                 <div className="icon">
                     <span>
-                        <i className={icon} />
+                        <i className={icon}/>
                     </span>
                 </div>
             </div>
@@ -114,13 +115,15 @@ Data.displayName = 'Data';
 Data.propTypes = {
     title: PropTypes.string.isRequired,
     value: PropTypes.number,
-    unit:  PropTypes.string
+    unit: PropTypes.string,
+    url: PropTypes.string
 };
 
 Data.defaultProps = {
     title: 'Mozaïk JSON widget',
     value: 0,
-    unit:  ''
+    unit: '',
+    url: ''
 };
 
 reactMixin(Data.prototype, ListenerMixin);
