@@ -10,9 +10,9 @@ const client = function (mozaik) {
     mozaik.loadApiConfig(config);
 
     function buildApiRequest(url) {
-        let url     = (url) ? url : config.get('json.url');
+        let ApiUrl     = (url) ? url : config.get('json.url');
         let headers = config.get('json.headers');
-        let req     = request.get(url);
+        let req     = request.get(ApiUrl);
 
         headers.forEach(function(header){
             req.set(header.name, header.value);
