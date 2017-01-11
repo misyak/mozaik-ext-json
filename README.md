@@ -24,6 +24,7 @@ Let's say you want to display two set of data from a file you host on your Dropb
 ```javascript
   {
       type:  'json.data',
+      id: 'myID',
       title: '${obj2.name}',
       value: '${obj2.value}',
       unit:  null,
@@ -32,6 +33,7 @@ Let's say you want to display two set of data from a file you host on your Dropb
   },
   {
       type:  'json.data',
+      id: 'myID',
       title: 'WIDGET TITLE',
       value: '${obj1.value}',
       unit:  '${obj1.unit}',
