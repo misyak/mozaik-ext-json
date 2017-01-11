@@ -74,6 +74,7 @@ In your Mozaik dashboard's config.js file, add the webservice url in the <code>a
 key       | required | description
 ----------|----------|-------------------------------------------------------------------
 `type`    | yes      | *Always equal to 'json.data'*
+`id`      | yes      | *ID of widget*
 `title`   | yes      | *The title to be displayed in the header.*
 `value`   | yes      | *The value to be displayed in the widget body.*
 `unit`    | yes      | *Unit to be displayed after the data. Set to null if not needed.*
@@ -84,6 +85,7 @@ key       | required | description
 ```javascript
   {
       type:  'json.data',
+      id: 'MyID',
       title: 'THIS IS A TITLE',
       value: '${obj1.value}',
       unit:  '${obj1.unit}',

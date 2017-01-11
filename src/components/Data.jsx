@@ -22,7 +22,7 @@ class Data extends Component {
 
     getApiRequest() {
         return {
-            id: 'json.data',
+            id: `json.data.${this.props.id}`,
             params: {
                 title: this.props.title,
                 value: this.props.value,
@@ -113,6 +113,7 @@ class Data extends Component {
 Data.displayName = 'Data';
 
 Data.propTypes = {
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     value: PropTypes.number,
     unit: PropTypes.string,
